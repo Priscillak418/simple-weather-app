@@ -49,8 +49,18 @@ cityForm.addEventListener('submit', e =>{
     const city = cityForm.city.value.trim();
     cityForm.reset();
 
+    //Storing weather information in local storage
+    localStorage.setItem('city', city)
+
     updateCity(city)
         .then(data => updateUI(data))
         .catch(err => console.log(err))
     
 })
+
+
+if(localStorage.getItem('city')){
+    updateCity(localStorage.getItem('city'))
+        .then(data => updateUI(data))
+        .catch(err => console.log(err)) 
+}
